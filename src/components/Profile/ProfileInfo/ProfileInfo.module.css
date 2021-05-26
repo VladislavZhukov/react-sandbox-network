@@ -5,3 +5,7 @@
 .wallpaper img {
   width: 1000px;
 }
+
+.mainPhoto {
+  max-width: 200px;
+}

@@ -4,6 +4,7 @@ const ADD_POST = "sandbox_network/profile/ADD_POST";
 const SET_USER_PROFILE = "sandbox_network/profile/SET_USER_PROFILE";
 const SET_USER_STATUS = "sandbox_network/profile/SET_USER_STATUS";
 const DELETE_POST = "sandbox_network/profile/DELETE_POST";
+const SET_PHOTO_SUCCESS = "sandbox_network/profile/SET_PHOTO_SUCCESS";
 
 let initialState = {
     postsData: [
@@ -41,6 +42,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 postsData: state.postsData.filter(p => p.id !== action.postId)
             };
+        case SET_PHOTO_SUCCESS:
+            return {
+                ...state,
+                profile: { ...state.profile, photos: action.photos }
+            };
         default:
             return state;
     }
@@ -50,6 +56,7 @@ export const addPost = (newPostText) => ({ type: ADD_POST, newPostText });
 export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile: profile });
 export const setUserStatus = (status) => ({ type: SET_USER_STATUS, status: status });
+export const setPhotoSuccess = (photos) => ({ type: SET_PHOTO_SUCCESS, photos: photos });
 
 //ThunkCreator
 export const getProfile = (userId) => async (dispatch) => {
@@ -64,6 +71,12 @@ export const updateStatus = (status) => async (dispatch) => {
     const response = await profileAPI.updateStatus(status);
     if (response.resultCode === 0) {
         dispatch(setUserStatus(status));
+    }
+};
+export const savePhoto = (file) => async (dispatch) => {
+    const response = await profileAPI.savePhoto(file);
+    if (response.resultCode === 0) {
+        dispatch(setPhotoSuccess(response.data.photos));
     }
 };
 
