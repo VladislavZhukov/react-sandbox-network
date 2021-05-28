@@ -1,11 +1,11 @@
-.description{
-  padding:10px;
-}
-
-.wallpaper img {
-  width: 1000px;
+.descriptionContact {
+  padding-left: 10px;
 }
 
 .mainPhoto {
-  max-width: 200px;
+  padding: 10px;
+}
+
+.selectorPhot {
+  padding-left: 10px;
 }
