@@ -28,8 +28,8 @@ export const authAPI = {
         const response = await instance.get(`auth/me`);
         return response.data;
     },
-    async login(email, password, rememberMe = false) {
-        const response = await instance.post(`auth/login`, { email, password, rememberMe }, {});
+    async login(email, password, rememberMe = false, captcha = null) {
+        const response = await instance.post(`auth/login`, { email, password, rememberMe, captcha }, {});
         return response.data;
     },
     async logout() {
@@ -68,5 +68,11 @@ export const profileAPI = {
     saveProfile(profile) {
         return (instance
             .put(`profile`, profile).then(response => response.data));
+    }
+}
+
+export const securityApi = {
+    getCaptchaUrl() {
+        return instance.get(`security/get-captcha-url`);
     }
 }

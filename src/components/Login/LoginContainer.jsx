@@ -9,7 +9,7 @@ class LoginContainer extends React.Component {
     return <Login {...this.props} />;
   }
 }
-const mapStateToProps = (state) => ({ isAuth: state.auth.isAuth });
+const mapStateToProps = (state) => ({ isAuth: state.auth.isAuth, captchaUrl: state.auth.captchaUrl });
 const mapDispatchToProps = { login, logout };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

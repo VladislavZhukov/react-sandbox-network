@@ -5,16 +5,16 @@ import LoginReduxForm from "./LoginReduxForm";
 
 const Login = (props) => {
   const onSubmit = (formData) => {
-    props.login(formData.email, formData.password, formData.rememberMe);
+    props.login(formData.email, formData.password, formData.rememberMe, formData.captcha);
   };
 
   if (props.isAuth) {
-    return <Redirect to={"/profile"} />
+    return <Redirect to={"/profile"} />;
   }
   return (
     <div className={lm.header}>
       <h1>Login</h1>
-      <LoginReduxForm onSubmit={onSubmit} />
+      <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
     </div>
   );
 };

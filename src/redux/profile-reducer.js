@@ -88,8 +88,7 @@ export const saveProfile = (updatedProfile) => async (dispatch, getState) => {
     } else {
         dispatch(stopSubmit("editProfile", { _error: response.messages[0] }));
         //modify on --> dispatch(stopSubmit("editProfile", { "contacts": {"facebook": response.messages[0] } }));
-        debugger
-        return Promise.reject(response.messages[0]);    
+        return Promise.reject(response.messages[0]);
     }
 };
 
